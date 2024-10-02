@@ -12,9 +12,10 @@ interface IInput {
     placeholder?: string;
     validation?: object;
     label?: string;
+    required?: boolean;
 }
 
-export default function FormInput({ name, type, size, value, id, placeholder, validation, label }: IInput) {
+export default function FormInput({ name, type, size, value, id, placeholder, validation, label, required }: IInput) {
 
     const { control } = useFormContext();
 
@@ -24,15 +25,25 @@ export default function FormInput({ name, type, size, value, id, placeholder, va
             <Controller
                 control={control}
                 name={name}
-                render={({ field }) => (
+                render={({ field }) => type === "password" ? (
+                    <Input.Password
+                        {...field}
+                        type={type}
+                        size={size}
+                        placeholder={placeholder}
+                        value={value ? value : field.value}
+                        required={required}
+                    />
+                ) : (
                     <Input
                         {...field}
                         type={type}
                         size={size}
                         placeholder={placeholder}
                         value={value ? value : field.value}
+                        required={required}
                     />
-                )}
+                ) }
             />
         </>
     )
