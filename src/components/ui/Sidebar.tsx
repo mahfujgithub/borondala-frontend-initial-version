@@ -13,9 +13,9 @@ export default function Sidebar() {
     const role = USER_ROLE.ADMIN;
     return (
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-            <div className="text-center text-white font-bold text-xl">
+            {/* <div className="text-center text-white font-bold text-xl">
                 BoronDala
-            </div>
+            </div> */}
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={SidebarItems(role)} />
         </Sider>
     )
