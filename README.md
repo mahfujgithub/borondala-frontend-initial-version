@@ -1,1 +1,13 @@
-# The document will be published after the product has been launched.
+# The final document will be published after the product has been launched.
+## Tech Stack:
+* NestJS (App Router)
+## Languages:
+* TypeScript
+## CSS:
+* TailwindCSS
+* CustomCSS
+## Packages & Tools:
+* ReduxJS (State Management)
+* Redux-Toolkit (API-Request Handling)
+* Ant-Design (Component Library)
+* React-Form-Hook (Form Handling)
