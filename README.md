@@ -1,6 +1,6 @@
 # The final document will be published after the product has been launched.
 ## Tech Stack:
-* NestJS (App Router)
+* NextJS (App Router)
 ## Languages:
 * TypeScript
 ## CSS:
