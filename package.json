@@ -12,6 +12,7 @@
     "@ant-design/nextjs-registry": "^1.0.1",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.21.1",
+    "axios": "^1.7.8",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
