@@ -6,22 +6,46 @@ import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import { SubmitHandler } from "react-hook-form";
 import FormInput from "@/components/Forms/FormInput";
+import { useUserRegistrationMutation } from "@/redux/api/authApi";
+import { storeUserInfo } from "@/services/auth.service";
 
-type FormValues = {
-    name: string;
+type FormValues = {  
+    firstName: string;
+    lastName: string;
     phone: number;
     email: string;
     password: string;
+    confirmPassword: string;
+    presentAddress: string;
     required: boolean;
 }
 
 
 export default function Register() {
-    const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const [userRegistration] = useUserRegistrationMutation();
+    const onSubmit: SubmitHandler<FormValues> = async (data) => {
+        const userInfo = {
+            customer: {
+                name: {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                },
+                contact: data.phone,
+                email: data.email,
+                presentAddress: data.presentAddress,
+                password: String(data.password),
+                confirmPassword: String(data.confirmPassword),
+            },
+            user: {
+                email: data.email
+            }
+        }
         try {
-            console.log(data)
+            const res = await userRegistration({...userInfo}).unwrap();
+            
+            storeUserInfo({accessToken: res?.data?.accessToken})
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
     return (
@@ -49,11 +73,27 @@ export default function Register() {
                 <div>
                     <Form submitHandler={onSubmit}>
                         <FormInput
-                            name="name"
+                            name="firstName"
                             type="text"
                             size="large"
-                            placeholder="Your Name"
-                            label="Name:"
+                            placeholder="First Name"
+                            label="First Name:"
+                            required={true}
+                        />
+                        <FormInput
+                            name="lastName"
+                            type="text"
+                            size="large"
+                            placeholder="Last Name"
+                            label="Last Name:"
+                            required={true}
+                        />
+                        <FormInput
+                            name="presentAddress"
+                            type="text"
+                            size="large"
+                            placeholder="Address"
+                            label="Address:"
                             required={true}
                         />
                         <FormInput
@@ -69,13 +109,6 @@ export default function Register() {
                             size="large"
                             placeholder="Email"
                             label="Email:"
-                        />
-                        <FormInput
-                            name="address"
-                            type="text"
-                            size="large"
-                            placeholder="Address"
-                            label="Address:"
                         />
                         <FormInput
                             name="password"
