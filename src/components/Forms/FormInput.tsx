@@ -15,7 +15,7 @@ interface IInput {
     required?: boolean;
 }
 
-export default function FormInput({ name, type, size, value, id, placeholder, validation, label, required }: IInput) {
+export default function FormInput({ name, type, size, value, placeholder, label, required }: IInput) {
 
     const { control } = useFormContext();
 
