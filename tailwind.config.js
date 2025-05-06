@@ -25,7 +25,7 @@ module.exports = {
         },
       },
       animation: {
-        'settle-bounce': 'settle-bounce 1s ease-out 1 forwards',
+        'settle-bounce': 'settle-bounce 2s ease-out 1 forwards',
       },
     },
   },
